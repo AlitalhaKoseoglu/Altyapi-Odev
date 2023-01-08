@@ -1,0 +1,20 @@
+#!/bin/bash
+
+inotifywait -r -m -e create,delete,move "/home/alitalha/Masaüstü" |
+       while read path event file; do
+
+          filename=$(basename "$file")
+
+
+if [[ $event == "CREATE" ]] || [[ $event == "MOVE" ]];then
+
+         date=$(date +%Y-%m-%dT%T)
+
+         psql -U postgres -d postgres -c "INSERT INTO tablo (tarih, dosyaadi) VALUES (NOW(), '$filename');"
+
+ elif [[ $event == "DELETE" ]] || [[ $event == "MOVE" ]];then
+
+       psql -U postgres -d postgres -c "UPDATE tablo SET silinmetarihi=NOW() WHERE dosyaadi='$filename' AND silinmetarihi IS NULL ;"
+      fi
+done
+

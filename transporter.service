@@ -1,0 +1,10 @@
+[Unit]
+Description=Servis baslatiliyor
+
+[Service]
+Type=simple
+ExecStart=/home/alitalha/Masaüstü/scriptim
+
+
+[Install]
+WantedBy=multi-user.target
