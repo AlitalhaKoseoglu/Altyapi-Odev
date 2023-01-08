@@ -1,1 +1,5 @@
-CREATE TABLE tablo ( id SERIAL PRIMARY KEY, tarih TIMESTAMP, dosyaadi TEXT, silinmetarihi TIMESTAMP );
+CREATE TABLE tablo 
+( id SERIAL PRIMARY KEY, 
+tarih TIMESTAMP, 
+dosyaadi TEXT, 
+silinmetarihi TIMESTAMP );
